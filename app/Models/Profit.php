@@ -10,4 +10,8 @@ class Profit extends Model
     use HasFactory;
 
     protected $fillable = ['transaction_id', 'total'];
+
+    public function transaction() {
+      return $this->belongsTo(Transaction::class);
+    }
 }
