@@ -1,0 +1,21 @@
+<template>
+    <div class="c-app flex-row align-items-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <slot />
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    data: () => ({
+        state: {
+            name: "",
+        },
+    }),
+};
+</script>
+
+<style></style>
