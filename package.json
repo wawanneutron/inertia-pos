@@ -22,6 +22,7 @@
         "@inertiajs/progress": "^0.2.7",
         "chart.js": "^4.4.0",
         "vue": "^3.2.29",
-        "vue-chart-3": "^3.1.2"
+        "vue-chart-3": "^3.1.2",
+        "vue-sweetalert2": "^5.0.2"
     }
 }

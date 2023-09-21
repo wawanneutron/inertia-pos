@@ -24,7 +24,7 @@ Route::prefix('apps')->group(function() {
         ->middleware('permission:permissions.index');
 
         // route resource roles
-        Route::resource('/roles', RoleController::class, ['ass' => 'apps'])
+        Route::resource('/roles', RoleController::class, ['as' => 'apps'])
         ->middleware('permission:roles.index|roles.create|roles.edit|roles.delete');
     
     });

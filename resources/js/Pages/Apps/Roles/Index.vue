@@ -83,7 +83,7 @@
                                             </td>
                                             <td class="text-center">
                                                 <Link
-                                                    href="#"
+                                                    :href="`/apps/roles/${role.id}/edit`"
                                                     v-if="
                                                         hasAnyPermission([
                                                             'roles.edit',
@@ -96,6 +96,7 @@
                                                     EDIT</Link
                                                 >
                                                 <button
+                                                    @click="onDelete(role.id)"
                                                     v-if="
                                                         hasAnyPermission([
                                                             'roles.delete',
@@ -136,6 +137,9 @@ import { ref } from "vue";
 //import inertia adapter
 import { Inertia } from "@inertiajs/inertia";
 
+//import sweet alert2
+import Swal from "sweetalert2";
+
 export default {
     //layout
     layout: LayoutApp,
@@ -165,10 +169,35 @@ export default {
             });
         };
 
+        const onDelete = (id) => {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Inertia.delete(`/apps/roles/${id}`);
+
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Role deleted successfully.",
+                        icon: "success",
+                        timer: 2000,
+                        showConfirmButton: false,
+                    });
+                }
+            });
+        };
+
         //return
         return {
             search,
             handleSearch,
+            onDelete,
         };
     },
 };
