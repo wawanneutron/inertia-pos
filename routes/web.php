@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Apps\CategoryController;
 use App\Http\Controllers\Apps\PermissionController;
+use App\Http\Controllers\Apps\ProductController;
 use App\Http\Controllers\Apps\RoleController;
 use App\Http\Controllers\Apps\UserController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +33,15 @@ Route::prefix('apps')->group(function() {
         // route resource users
         Route::resource('/users', UserController::class, ['as' => 'apps'])
         ->middleware('permission:users.index|users.create|users.edit|users.delete');
-    
+
+        //route resource categories
+        Route::resource('/categories', CategoryController::class, ['as' => 'apps'])
+            ->except(['show'])
+            ->middleware('permission:categories.index|categories.create|categories.edit|categories.delete');
+
+        //route resource products
+        Route::resource('/products', ProductController::class, ['as' => 'apps'])
+            ->except(['show'])
+            ->middleware('permission:products.index|products.create|products.edit|products.delete');
     });
 });
